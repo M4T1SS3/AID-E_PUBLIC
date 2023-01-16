@@ -9,7 +9,7 @@ export default function Header() {
       <nav className='flex justify-between p-4 w-screen'>
          
         <a href="../" className="font-medium"><h3>AID-E</h3></a>
-         <a href="https://en.wikipedia.org/wiki/Alpaca" className=' cursor-pointer w-12 h-12 grid place-items-center'>
+         <a href="https://en.wikipedia.org/wiki/Alpaca" target="_blank" className=' cursor-pointer w-12 h-12 grid place-items-center'>
           <Image src={EmergencyIcon} alt="icon"/>
 
             {/* <span className='text-[#fff]'>!</span> */}

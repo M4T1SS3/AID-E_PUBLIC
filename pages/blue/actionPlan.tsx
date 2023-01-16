@@ -56,11 +56,14 @@ export default function ActionPage() {
                     )
                 })}
             </motion.ul>
-             <div>
-                <a>Go Back Chatting</a>
-                <a>Finish and send Email</a>
-                <a>Finish with out Email</a>
-             </div>
+            <div className="flex gap-x-4 h-16 w-full mt-4 px-4">
+                    <div className="bg-[#000] w-full rounded-lg grid place-items-center cursor-pointer text-center text-[#fff]">
+                        Go back chatting
+                    </div>
+                    <a href="/blue/infoPage" className="bg-[#000] w-full rounded-lg grid place-items-center cursor-pointer text-center text-[#fff]">
+                        Send email
+                    </a>
+                </div>
         </section>
     )
 
@@ -73,7 +76,7 @@ type ActionCardProps = {
 function ActionCard({id,  heading, description}: ActionCardProps) {
    return (
        <div className="bg-[#0575FF] rounded-xl p-4 mr-4" style={{width: windowWidth < breakingPoint ? windowWidth - 3*paddingToBorder  + "px": undefined}} >
-       <div className="text-7xl opacity-40 font-bold mt-16">1</div>
+       <div className="text-7xl opacity-40 font-bold mt-16">{id}</div>
        <h3 className="text-3xl font-bold mb-8">Talk with friends and family</h3>
        <p className="mb-28">Whoever performs or causes to be performed sexual acts on another person against that person's recognisable will or causes that person to perform or tolerate sexual acts on or by a third person.</p>
    </div>
