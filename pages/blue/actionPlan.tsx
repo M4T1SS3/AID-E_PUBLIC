@@ -91,7 +91,7 @@ export default function ActionPage() {
                 drag={width< breakingPoint ? "x": undefined}
                 style={{width:  width< breakingPoint ? 100 * actionPoints.length + "vw": 100 + "vw"}}
                 dragConstraints={{left: -( width * (actionPoints.length-1)) + 4*2*paddingToBorder, right: 0}}>
-                {actionPoints.map(({index, item }: any) => {
+                {actionPoints.map((item: String[], index: number) => {
                     return (
                         <ActionCard key={index} item={item}/>
                     )

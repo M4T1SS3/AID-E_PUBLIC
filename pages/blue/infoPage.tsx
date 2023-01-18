@@ -78,18 +78,19 @@ export default function InfoPage() {
           {loaded && <h2 className="text-4xl mt-8 font-bold mb-8 ml-4">It seems you were a victim of</h2>}
           {loaded == false &&<Loading/>}
 
+          {loaded && 
           <motion.ul animate={controls}
-          className=" h-4/6 min-w-full flex mt-4 ml-4 overflow-hidden md:grid md:grid-cols-3 md:gap-y-4 md:m-0 md:px-4"
-          drag={width < breakingPoint ? "x": undefined}
-          style={{width:  width < breakingPoint ? 100 * infoPoints.length + "vw": 100 + "vw"}}
-          dragConstraints={{left: -( width * (infoPoints.length-1)) + 4*2*paddingToBorder, right: 0}}>
-            {infoPoints.length > 0 && infoPoints.map(({key, item}: any) => {
-                return (
-                    <InfoCard  key={key} item={item}/>
-                )
-            })}
+            className=" h-4/6 min-w-full flex mt-4 ml-4 overflow-hidden md:grid md:grid-cols-3 md:gap-y-4 md:m-0 md:px-4"
+            drag={width < breakingPoint ? "x": undefined}
+            style={{width:  width < breakingPoint ? 100 * infoPoints.length + "vw": 100 + "vw"}}
+            dragConstraints={{left: -( width * (infoPoints.length-1)) + 4*2*paddingToBorder, right: 0}}>
+              {infoPoints.map((item: String[], index: number) => {
+                  return (
+                      <InfoCard  key={index} item={item}/>
+                  )
+              })}
 
-        </motion.ul>
+        </motion.ul>}
         {loaded &&<div className="grid w-full place-items-end mt-16 mb-4 px-4">
             <Link href="/blue/actionPlan"  className="bg-[#000] grid place-items-center h-16 w-full rounded-lg">
                 <span className="text-[#fff]">Continue</span>
