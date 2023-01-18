@@ -10,15 +10,9 @@ import Link from "next/link";
 
 
 function Chat() {
-    const configuration = new Configuration({
-        organization: "org-fOs9puex0imVLiRHMrkRPMmx",
-        apiKey: process.env.OPENAI_API_KEY,
-    });
-    const openai = new OpenAIApi(configuration);
-    const model = "text-davinci-002";
+
 
     let [input, setInput] = useState("")
-    let [response, setResponse] = useState("");
     let [messages, setMessages] = useState<MessageProps[]>([]);
 
     type MessageProps = {
@@ -38,17 +32,16 @@ function Chat() {
 
 
     async function handleSubmit() {
-        console.log("HKjk")
-        try {
+        
             let history = ""
             messages.map((item) => {
                 if (item.input == true) {
-                    history += " [the victim]: " + item.message;
+                    history += "[what the victim said]: " + item.message;
                 } else{
-                    history += " [aid-e]: " + item.message;
+                    history += " [what you said]: " + item.message;
                 }
             })
-            console.log(history)
+
             const response = await fetch('/api/openai', {
                 method: 'POST',
                 headers: {
@@ -60,9 +53,7 @@ function Chat() {
             let newMessage = {message: data, input: false}
             setMessages(messages = [...messages, newMessage])
             localStorage.setItem("messages", JSON.stringify(messages));
-        } catch (error) {
-            console.log(error)
-        }
+        
         
       }
     
@@ -79,15 +70,6 @@ function Chat() {
        
     let [secretMode, setSecretMode] = useState(false)
 
-    // async function initialise() {
-    //     const response = await fetch('/api/openai', {
-    //         method: 'POST',
-    //         headers: {
-    //           'Content-Type': 'application/json',
-    //         },
-    //         body:JSON.stringify(57051079),
-    //       })
-    // }
 
     useEffect(() => {
         if (localStorage  && localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -104,8 +86,6 @@ function Chat() {
         setMessages(messages = []);
     }
 
-    
-
 
 
     return (
@@ -119,9 +99,9 @@ function Chat() {
                     className="grid place-items-start">
                         <p className="bg-[#423898] text-[#fff] rounded-lg break-word max-w-[70%] md:max-w-[50%] p-2 my-2">Hello, I am assistent aid-e. If you have been a victim of a crime, I understand that this may be a difficult time for you. Please know that I am here to listen to you. My main goal is to navigate through this difficult time, and to provide you with the assistance you need to feel safe. Is there anything specific you would like to talk about? This is a safe place where you can talk openly and honestly about what you're going through. I am here to help.</p>
                     </motion.div>
-                {messages.map(({index, message}:any) => {
+                    {messages.map((message: MessageProps, index: number) => {
                     
-                    if (message.input == true) {
+                    if (message.input === true) {
                         return (
                             <motion.div  key={index}
                             initial={{ opacity: 0}}
@@ -131,7 +111,8 @@ function Chat() {
                                 <p className="bg-[#fff] opacity-60 text-[#000] rounded-lg p-2 my-2 break-word max-w-[50%] ">{message.message}</p>
                             </motion.div>
                         )
-                    } else {
+                    }
+                    if (message.input === false) {
                         return (
                             <motion.div key={index}
                             initial={{ opacity: 0}}
@@ -163,4 +144,4 @@ function Chat() {
     )
 }
 
-export default React.memo(Chat);
+export default Chat;
