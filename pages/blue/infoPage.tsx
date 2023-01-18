@@ -44,7 +44,7 @@ export default function InfoPage() {
 
 
 
-    let [infoPoints, setInfoPoints] = useState<String[][]>([])
+    let [infoPoints, setInfoPoints] = useState<string[][]>([])
 
    async function getInfoCards() {
     try {
@@ -84,7 +84,7 @@ export default function InfoPage() {
             drag={width < breakingPoint ? "x": undefined}
             style={{width:  width < breakingPoint ? 100 * infoPoints.length + "vw": 100 + "vw"}}
             dragConstraints={{left: -( width * (infoPoints.length-1)) + 4*2*paddingToBorder, right: 0}}>
-              {infoPoints.map((item: String[], index: number) => {
+              {infoPoints.map((item: string[], index: number) => {
                   return (
                       <InfoCard  key={index} item={item}/>
                   )
@@ -105,7 +105,8 @@ export default function InfoPage() {
 
   
 
-    function InfoCard({key, item}: any) {
+    function InfoCard({item}: { item: string[] }, key: number) {
+
 
         return (
             <motion.div key={key}  
