@@ -43,12 +43,10 @@ export default function Home() {
     useEffect(() => {
       const handleResize = () => setWidth(window.innerWidth);
       window.addEventListener('resize', handleResize);
-      if ( localStorage  && localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        localStorage.theme = 'light'
-        setSecretMode(false)
-      } else {
-        localStorage.theme = 'dark'
+      if ( localStorage  && localStorage.theme === 'secret' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: secret)').matches)) {
         setSecretMode(true)
+      } else {
+        setSecretMode(false)
       }
       return () => window.removeEventListener('resize', handleResize);
     }, []);
@@ -57,10 +55,10 @@ export default function Home() {
   }
 
   function switchTheme() {
-    if (localStorage.theme == "dark") {
-      localStorage.theme = 'light'
+    if (localStorage.theme == "secret") {
+      localStorage.theme = 'normal'
     } else {
-      localStorage.theme = 'dark'
+      localStorage.theme = 'secret'
     }
     setSecretMode(!secretMode)
 
@@ -96,7 +94,7 @@ export default function Home() {
             drag="x" dragConstraints={{left: 0, right: windowWidth - swipeMargin}}
             dragElastic={0} dragControls={dragControls} 
             className='h-12 w-12 px-2 grid place-items-center rounded-full z-99 bg-[#000000] absolute cursor-pointer'>
-              <Image src={ArrowIcon} alt="arrow icon" className=''></Image>
+              <Image src={ArrowIcon} alt="arrow icon" className='pointer-events-none'></Image>
           </motion.div>
           <div className='h-12 rounded-full bg-[#97bfff] ' style={{width: dragPosition }} />
           <span className='mx-auto text-[#000] text-center absolute left-1/2 translate-x-[-50%]'>activate discreet colors</span>

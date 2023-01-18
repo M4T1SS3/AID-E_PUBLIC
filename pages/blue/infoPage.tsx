@@ -11,14 +11,12 @@ export default function InfoPage() {
     let [secretMode, setSecretMode] = useState(false)
     let [loaded, setLoaded] = useState(false)
     useEffect(() => {
-      if ( localStorage  && localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        localStorage.theme = 'light'
-        setSecretMode(false)
-      } else {
-        localStorage.theme = 'dark'
+      if ( localStorage  && localStorage.theme === 'secret' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: secret)').matches)) {
         setSecretMode(true)
+      } else {
+        setSecretMode(false)
       }
-          getInfoCards()
+      getInfoCards()
 
     }, [])
 
@@ -51,7 +49,7 @@ export default function InfoPage() {
    async function getInfoCards() {
     try {
         let history = localStorage.getItem("messages")
-        const response = await fetch('/https://aid-e.netlify.app/api/openai', {
+        const response = await fetch('https://aid-e.netlify.app/api/openai', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -117,7 +115,7 @@ export default function InfoPage() {
               animate={{ x: 0, opacity: 1 }} initial={{opacity: 0}}
               className="bg-[#40D0FF] rounded-xl p-4 mr-4 overflow-hidden" 
               style={{width: width < breakingPoint ? width - 4*paddingToBorder  + "px": undefined}} >
-                <div className="text-7xl opacity-40 font-bold mt-16">{key+1}</div>
+                <div className="text-7xl opacity-40 font-bold mt-16">{index+1}</div>
                 <h3 className="text-5xl font-bold mb-8">{item[0]}</h3>
                 <p className="mb-16 w-5/6 max-w-[100%] break-words">{item[1]}</p>
                 <Link href={item[2]} className="font-bold  underline cursor-pointer grid-row-end-span-1">{item[2]}</Link>

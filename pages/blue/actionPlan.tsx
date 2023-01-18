@@ -60,12 +60,10 @@ export default function ActionPage() {
           const handleResize = () => setWidth(window.innerWidth);
           getInfoCards()
           window.addEventListener('resize', handleResize);
-          if ( localStorage  && localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            localStorage.theme = 'light'
-            setSecretMode(false)
-          } else {
-            localStorage.theme = 'dark'
+          if ( localStorage  && localStorage.theme === 'secret' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: secret)').matches)) {
             setSecretMode(true)
+          } else {
+            setSecretMode(false)
           }
           
           return () => window.removeEventListener('resize', handleResize);
@@ -119,7 +117,7 @@ function ActionCard({item, key}: { item: string[], key:number }) {
     let index = actionPoints.indexOf(item)
    return (
     <div key={index} className="bg-[#40D0FF] rounded-xl p-4 mr-4 cursor-grab" style={{width: width < breakingPoint ? width - 3*paddingToBorder  + "px": undefined}} >
-       <div className="text-7xl opacity-40 font-bold mt-16">{key +1}</div>
+       <div className="text-7xl opacity-40 font-bold mt-16">{index +1}</div>
        <h3 className="text-3xl font-bold mb-8">{item[0]}</h3>
        <p className="">{item[1]}</p>
    </div>
