@@ -38,7 +38,7 @@ export default function ActionPage() {
     const paddingToBorder = 16;
     const breakingPoint =  768;
     let [secretMode, setSecretMode] = useState(false)
-    let [actionPoints, setActionPoints] = useState<String[][]>([])
+    let [actionPoints, setActionPoints] = useState<string[][]>([])
     let [loaded, setLoaded] = useState(false)
     let [email, setEmail] = useState("")
 
@@ -91,9 +91,9 @@ export default function ActionPage() {
                 drag={width< breakingPoint ? "x": undefined}
                 style={{width:  width< breakingPoint ? 100 * actionPoints.length + "vw": 100 + "vw"}}
                 dragConstraints={{left: -( width * (actionPoints.length-1)) + 4*2*paddingToBorder, right: 0}}>
-                {actionPoints.map((item: String[], index: number) => {
+                {actionPoints.map((item: string[]) => {
                     return (
-                        <ActionCard key={index} item={item}/>
+                        <ActionCard item={item}/>
                     )
                 })}
             </motion.ul>}
@@ -114,7 +114,9 @@ type ActionCardProps = {
     id: number,  heading: string, description: string
 }
 
-function ActionCard({key,  item}: any) {
+function ActionCard({item}: { item: string[] }) {
+
+    let key = actionPoints.indexOf(item)
    return (
     <div key={key} className="bg-[#40D0FF] rounded-xl p-4 mr-4 cursor-grab" style={{width: width < breakingPoint ? width - 3*paddingToBorder  + "px": undefined}} >
        <div className="text-7xl opacity-40 font-bold mt-16">{key +1}</div>

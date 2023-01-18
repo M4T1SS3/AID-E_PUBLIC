@@ -78,7 +78,10 @@ function Chat() {
             setSecretMode(false)
         }
         
-     
+        let messages = localStorage.getItem("messages");
+        if (messages != null) {
+            setMessages(messages = JSON.parse(messages))
+        }
     }, [])
 
     function deleteChat() {

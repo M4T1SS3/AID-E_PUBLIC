@@ -28,12 +28,14 @@ export default function InfoPage() {
         useEffect(() => {
           const handleResize = () => setWidth(window.innerWidth);
           window.addEventListener('resize', handleResize);
+
           controls.start({
             transition: {
               staggerChildren: 5,
             },
           });
           return () => window.removeEventListener('resize', handleResize);
+        
 
         }, []);
       
@@ -49,7 +51,7 @@ export default function InfoPage() {
    async function getInfoCards() {
     try {
         let history = localStorage.getItem("messages")
-        const response = await fetch('https://aid-e.netlify.app/api/openai', {
+        const response = await fetch('/https://aid-e.netlify.app/api/openai', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -73,7 +75,7 @@ export default function InfoPage() {
    
 
     return (
-        <section className="overflow-hidden bg-main-blue min-h-screen h-screen md:h-auto" style={{backgroundColor: secretMode  ? "#A6A6A6": undefined}} >
+        <section className="overflow-hidden bg-main-blue min-h-screen  md:h-auto" style={{backgroundColor: secretMode  ? "#A6A6A6": undefined}} >
           <Header back={true}/>
           {loaded && <h2 className="text-4xl mt-8 font-bold mb-8 ml-4">It seems you were a victim of</h2>}
           {loaded == false &&<Loading/>}
@@ -84,9 +86,9 @@ export default function InfoPage() {
             drag={width < breakingPoint ? "x": undefined}
             style={{width:  width < breakingPoint ? 100 * infoPoints.length + "vw": 100 + "vw"}}
             dragConstraints={{left: -( width * (infoPoints.length-1)) + 4*2*paddingToBorder, right: 0}}>
-              {infoPoints.map((item: string[], index: number) => {
+              {infoPoints.map((item: string[]) => {
                   return (
-                      <InfoCard  key={index} item={item}/>
+                      <InfoCard  item={item}/>
                   )
               })}
 
@@ -105,8 +107,10 @@ export default function InfoPage() {
 
   
 
-    function InfoCard({item}: { item: string[] }, key: number) {
+    function InfoCard({item}: { item: string[] }) {
 
+
+      let key = infoPoints.indexOf(item)
 
         return (
             <motion.div key={key}  
