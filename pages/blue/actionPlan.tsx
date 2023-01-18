@@ -10,7 +10,7 @@ export default function ActionPage() {
     async function getInfoCards() {
         try {
             let history = localStorage.getItem("messages")
-            const response = await fetch('/api/openai', {
+            const response = await fetch('https://aid-e.netlify.app/api/openai', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
@@ -82,7 +82,7 @@ export default function ActionPage() {
     return (
         <section className="overflow-hidden grid bg-main-blue min-h-screen" style={{backgroundColor: secretMode  ? "#A6A6A6": undefined}}>
              <Header back={true}/>
-             {loaded == false &&<Loading/>}
+             {loaded === false &&<Loading/>}
              {loaded &&<div className="w-screen px-4 ">
                 <h2 className="text-4xl font-bold mb-8 mt-8">This is what you can do</h2>
                 <input style={{backgroundColor: secretMode  ? "#A6A6A6": undefined}} className="w-full placeholder-[#0000007e] bg-main-blue overflow-hidden border-b-2 mb-8 border-[#000000]" type="text" placeholder="Send plan to email"></input>
@@ -101,7 +101,7 @@ export default function ActionPage() {
                     <div className="bg-[#000] w-1/2 rounded-lg grid place-items-center cursor-pointer text-center text-[#fff]" onClick={() => deleteChat()}>
                         Delete data
                     </div>
-                    <Link href="/blue/infoPage" className="bg-[#000] w-1/2 rounded-lg grid place-items-center cursor-pointer text-center text-[#fff]" style={{opacity: email.length == 0 ? 50 + "%": 100 + "%"}}>
+                    <Link href="/blue/infoPage" className="bg-[#000] w-1/2 rounded-lg grid place-items-center cursor-pointer text-center text-[#fff]" style={{opacity: email.length === 0 ? 50 + "%": 100 + "%"}}>
                         Send email
                     </Link>
                 </div>}

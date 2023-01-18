@@ -11,11 +11,13 @@ export default function InfoPage() {
     let [secretMode, setSecretMode] = useState(false)
     let [loaded, setLoaded] = useState(false)
     useEffect(() => {
-        if ( localStorage  && localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            setSecretMode(true)
-          } else {
-            setSecretMode(false)
-          }
+      if ( localStorage  && localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        localStorage.theme = 'light'
+        setSecretMode(false)
+      } else {
+        localStorage.theme = 'dark'
+        setSecretMode(true)
+      }
           getInfoCards()
 
     }, [])
@@ -47,7 +49,7 @@ export default function InfoPage() {
    async function getInfoCards() {
     try {
         let history = localStorage.getItem("messages")
-        const response = await fetch('/api/openai', {
+        const response = await fetch('https://aid-e.netlify.app/api/openai', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
