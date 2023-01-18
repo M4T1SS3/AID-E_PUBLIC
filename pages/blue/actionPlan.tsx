@@ -93,7 +93,7 @@ export default function ActionPage() {
                 dragConstraints={{left: -( width * (actionPoints.length-1)) + 4*2*paddingToBorder, right: 0}}>
                 {actionPoints.map((item: string[]) => {
                     return (
-                        <ActionCard item={item}/>
+                        <ActionCard item={item} key={actionPoints.indexOf(item)}/>
                     )
                 })}
             </motion.ul>}
@@ -114,11 +114,11 @@ type ActionCardProps = {
     id: number,  heading: string, description: string
 }
 
-function ActionCard({item}: { item: string[] }) {
+function ActionCard({item, key}: { item: string[], key:number }) {
 
-    let key = actionPoints.indexOf(item)
+    let index = actionPoints.indexOf(item)
    return (
-    <div key={key} className="bg-[#40D0FF] rounded-xl p-4 mr-4 cursor-grab" style={{width: width < breakingPoint ? width - 3*paddingToBorder  + "px": undefined}} >
+    <div key={index} className="bg-[#40D0FF] rounded-xl p-4 mr-4 cursor-grab" style={{width: width < breakingPoint ? width - 3*paddingToBorder  + "px": undefined}} >
        <div className="text-7xl opacity-40 font-bold mt-16">{key +1}</div>
        <h3 className="text-3xl font-bold mb-8">{item[0]}</h3>
        <p className="">{item[1]}</p>

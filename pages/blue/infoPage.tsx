@@ -88,7 +88,7 @@ export default function InfoPage() {
             dragConstraints={{left: -( width * (infoPoints.length-1)) + 4*2*paddingToBorder, right: 0}}>
               {infoPoints.map((item: string[]) => {
                   return (
-                      <InfoCard  item={item}/>
+                      <InfoCard  item={item}key={infoPoints.indexOf(item)}/>
                   )
               })}
 
@@ -107,13 +107,13 @@ export default function InfoPage() {
 
   
 
-    function InfoCard({item}: { item: string[] }) {
+    function InfoCard({item, key}: { item: string[], key: number }) {
 
 
-      let key = infoPoints.indexOf(item)
+      let index = infoPoints.indexOf(item)
 
         return (
-            <motion.div key={key}  
+            <motion.div key={index}  
               animate={{ x: 0, opacity: 1 }} initial={{opacity: 0}}
               className="bg-[#40D0FF] rounded-xl p-4 mr-4 overflow-hidden" 
               style={{width: width < breakingPoint ? width - 4*paddingToBorder  + "px": undefined}} >
