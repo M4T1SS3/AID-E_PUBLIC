@@ -18,16 +18,19 @@ export default function ActionPage() {
                 body:JSON.stringify("ö§-" + history),
               })
             const data = await response.json();
-            let stringList = data.split("Headline: ");
-            let cleanStringList = stringList.filter((item: string) => item != "");
-            cleanStringList = stringList.filter((item: string) => item.length > 8);
-            stringList = cleanStringList
-            let items = stringList.map((item: string) => item.split(/Description:/))
-            // let cleanItems = items.filter((item: string) => item.length > 1);
-            // items = cleanItems
-            setActionPoints( actionPoints =  items)
-            console.log(actionPoints)
-            setLoaded(true)
+
+           if (typeof data === 'string') {
+                let stringList = data.split("Headline: ");
+                let cleanStringList = stringList.filter((item: string) => item != "");
+                cleanStringList = stringList.filter((item: string) => item.length > 8);
+                stringList = cleanStringList
+                let items = stringList.map((item: string) => item.split(/Description:/))
+                // let cleanItems = items.filter((item: string) => item.length > 1);
+                // items = cleanItems
+                setActionPoints( actionPoints =  items)
+                console.log(actionPoints)
+                setLoaded(true)
+            }
     
         } catch (error) {
             console.log(error)
