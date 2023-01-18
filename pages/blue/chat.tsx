@@ -99,9 +99,8 @@ function Chat() {
                     initial={{ opacity: 0}}
                     animate={{ opacity: 1}}
                     transition={{ duration: 0.5 }}
-                    style={{backgroundColor: secretMode  ? "#414141": undefined}}
                     className="grid place-items-start">
-                        <p className="bg-[#423898] text-[#fff] rounded-lg break-word max-w-[70%] md:max-w-[50%] p-2 my-2">Hello, I am assistent aid-e. If you have been a victim of a crime, I understand that this may be a difficult time for you. Please know that I am here to listen to you. My main goal is to navigate through this difficult time, and to provide you with the assistance you need to feel safe. Is there anything specific you would like to talk about? This is a safe place where you can talk openly and honestly about what you're going through. I am here to help.</p>
+                        <p  style={{backgroundColor: secretMode  ? "#414141": undefined}} className="bg-[#423898] text-[#fff] rounded-lg break-word max-w-[70%] md:max-w-[50%] p-2 my-2">Hello, I am assistent aid-e. If you have been a victim of a crime, I understand that this may be a difficult time for you. Please know that I am here to listen to you. My main goal is to navigate through this difficult time, and to provide you with the assistance you need to feel safe. Is there anything specific you would like to talk about? This is a safe place where you can talk openly and honestly about what you're going through. I am here to help.</p>
                     </motion.div>
                     {messages.map((message: MessageProps, index: number) => {
                     
@@ -122,9 +121,9 @@ function Chat() {
                             initial={{ opacity: 0}}
                             animate={{ opacity: 1}}
                             transition={{ duration: 0.5 }}
-                            style={{backgroundColor: secretMode  ? "#414141": undefined}}
+                            
                             className="grid place-items-start">
-                                <p className="bg-[#423898] text-[#fff] rounded-lg break-word max-w-[70%] md:max-w-[50%] p-2 my-2">{message.message}</p>
+                                <p style={{backgroundColor: secretMode  ? "#414141": undefined}} className="bg-[#423898] text-[#fff] rounded-lg break-word max-w-[70%] md:max-w-[50%] p-2 my-2">{message.message}</p>
                             </motion.div>
                         )
                     }
