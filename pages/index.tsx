@@ -5,6 +5,9 @@ import styles from '../styles/Home.module.css'
 import Header from './components/header'
 import { useDragControls, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
+import ArrowIcon from "../styles/assets/long-arrow.svg"
+import BlueIllustration from "../styles/assets/blue-illustration.png"
+import RedIllustration from "../styles/assets/red-illustration.png"
 
 
 export default function Home() {
@@ -67,24 +70,35 @@ export default function Home() {
 
 
   return (
-    <main className='w-screen h-screen font-Poppins'>
-     <Header/>
-      <div className='md:flex-row flex-col flex h-4/6 w-full '>
-        <a style={{backgroundColor: secretMode  ? "#A6A6A6": undefined}} href='/blue' className={`w-full md:h-3/4 text-center h-1/2 cursor-pointer rounded-3xl grid place-items-center  bg-main-blue`}><div ><h2 className='font-medium'>Am I a victim?</h2></div></a>
-        <div style={{backgroundColor: secretMode  ? "#636363": undefined}} className='w-full md:h-3/4 text-center h-1/2 cursor-pointer grid rounded-3xl place-items-center bg-main-pink'><h2 className='font-medium'>I am a victim.<br></br>Whats next?</h2></div>
+    <main style={{backgroundColor: secretMode  ? "#4b4b4b": undefined}} className='w-screen h-screen font-Poppins bg-[#060606]'>
+     <Header back={false}/>
+      <div className='md:flex-row flex-col flex h-4/6 w-full md:px-16'>
+        <a style={{backgroundColor: secretMode  ? "#A6A6A6": undefined}} href='/blue'
+          className={`overflow-hidden relative w-full md:h-full text-center h-1/2 cursor-pointer rounded-3xl grid place-items-center bg-main-blue`}
+        >
+          <motion.h2 style={{fontSize: secretMode  ? 14 + "px": undefined}} className='font-bold text-[#fff] text-3xl absolute z-10'>Am I a victim?</motion.h2>
+         {secretMode == false && <Image className='w-full absolute z-0' src={BlueIllustration} alt="a person is getting comforted by another person. 2d illustration. colors. abstract style. playful sad vibe."></Image>}
+        </a>
+        <a style={{backgroundColor: secretMode  ? "#A4A4A6": undefined}} href='/blue'
+          className={`overflow-hidden relative w-full md:h-full text-center h-1/2 cursor-pointer rounded-3xl grid place-items-center bg-main-blue`}
+        >
+          <motion.h2 style={{fontSize: secretMode  ? 14 + "px": undefined}}  className='font-bold text-[#fff] text-3xl absolute z-20'>I am a victim.<br></br> Whats next?</motion.h2>
+          {secretMode == false &&<Image className='w-full absolute z-10 opacity-90' src={RedIllustration} alt="a person is getting comforted by another person. 2d illustration. colors. abstract style. playful sad vibe."></Image>}
+        </a>
       </div>
-      <div>
-        <div className='rounded-full bg-[#000] h-16 p-2 flex items-center relative mx-2'>
+      <div className='absolute bottom-4 px-2 w-full'>
+        <div className='rounded-full bg-[#fff] h-16 p-2 flex items-center '>
           <motion.div onDrag={whileDrag} onDragEnd={(event) => dragEnd(event)}
             whileTap={{ cursor: "grabbing" }}
             dragSnapToOrigin={true}
             style={{ touchAction: "none" }}
             drag="x" dragConstraints={{left: 0, right: windowWidth - swipeMargin}}
             dragElastic={0} dragControls={dragControls} 
-            className='h-12 w-12 rounded-full z-99 bg-[#fff] absolute cursor-pointer'>
+            className='h-12 w-12 px-2 grid place-items-center rounded-full z-99 bg-[#000000] absolute cursor-pointer'>
+              <Image src={ArrowIcon} alt="arrow icon" className=''></Image>
           </motion.div>
-          <div className='h-12 rounded-full bg-[#f1f] ' style={{width: dragPosition }} />
-          <span className='mx-auto text-[#fff] absolute left-1/2 translate-x-[-50%]'>activate safemode</span>
+          <div className='h-12 rounded-full bg-[#97bfff] ' style={{width: dragPosition }} />
+          <span className='mx-auto text-[#000] text-center absolute left-1/2 translate-x-[-50%]'>activate discreet colors</span>
         </div>
       </div>
     </main>

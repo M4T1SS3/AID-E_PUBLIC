@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import blue from "../../styles/assets/blue.png";
+import blue from "../../styles/assets/blue-illustration.png";
 import Header from "../components/header";
 import { motion } from "framer-motion";
 import Chat from "./chat";
@@ -92,19 +92,13 @@ console.trace()
 
 
     return (
-        <main style={{backgroundColor: secretMode  ? "#A6A6A6": undefined}}  className="bg-main-blue min-h-screen w-screen overflow-hidden">
-            <Header/>
-            {step == 0 && 
-                <section className=" overflow-hidden md:grid md:place-items-center">
-                   <h2 className="font-semibold text-4xl  mt-12 mb-4 leading-relaxed pl-4">This is a safe place. You are not alone and we are here to help you.</h2>
-                     <div className="px-12 w-1/3"><Image src={blue} alt="llustration" /></div>
-                    <a href="/blue/chat" className="bg-[#000] grid place-items-center cursor-pointer h-16 w-44 rounded-lg absolute bottom-4 right-4">
-                        <span className="text-[#fff]">Continue</span>
-                    </a>
-
-                </section>
-            }
-
+        <main style={{backgroundColor: secretMode  ? "#A6A6A6": undefined}}  className="relative bg-main-blue min-h-screen w-screen overflow-hidden">
+           <div style={{zIndex: 99}} className="z-90 absolute"> <Header back={true}/></div>
+            <h2 style={{zIndex: 99}} className="top-16 lg:top-64 w-5/6 lg:w-1/2 left-1/2 translate-x-[-50%] lg:text-center absolute font-semibold text-4xl md:text-7xl text-[#fff] mt-12 mb-4 leading-relaxed pl-4 z-20">This is a safe place.You are not alone and we are here to help you.</h2>
+            <a style={{zIndex: 99}} href="/blue/chat" className=" z-20 bg-[#000] grid place-items-center cursor-pointer h-16 w-44 rounded-lg absolute bottom-4 right-4">
+                <span className="text-[#fff] bottom-0">Continue</span>
+            </a>
+            <Image style={{zIndex: -0}} className="z-0 w-[220%] lg:w-screen lg:translate-y-[-20vh]  max-w-[250%]  top-0 absolute" src={blue} alt="llustration" />
         </main>
     )
 

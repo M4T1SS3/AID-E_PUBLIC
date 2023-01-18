@@ -10,8 +10,8 @@ module.exports = {
   ],
   theme: {
     colors: {
-      "main-blue": "#BBEEFF",
-      "main-pink": "#F799FF"
+      "main-blue": "#6858FD",
+      "main-pink": "#FD3C3F"
     },
     extend: {
       fontFamily: {
