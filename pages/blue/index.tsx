@@ -4,6 +4,7 @@ import blue from "../../styles/assets/blue-illustration.png";
 import Header from "../components/header";
 import { motion } from "framer-motion";
 import Chat from "./chat";
+import Link from "next/link";
 
 export default function Blue() {
     let [step, setStep] = useState(0);
@@ -53,22 +54,10 @@ export default function Blue() {
     const breakingPoint =  768;
     let [secretMode, setSecretMode] = useState(false)
 
-    const useWindowResize = (): THook => {
-    if (hasWindow) {
-        
-        const initSize: TWindowSize = [
-            window.innerWidth,
-            window.innerHeight,
-        ];
-        const [windowSize, setWindowSize] = useState<TWindowSize>(initSize);
+    
 
         useEffect(() => {
-            const handleResize = (): void => {
-            setWindowSize([
-                window.innerWidth,
-                window.innerHeight,
-            ]);
-            };
+           
 
             if ( localStorage  && localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 setSecretMode(true)
@@ -76,28 +65,19 @@ export default function Blue() {
                 setSecretMode(false)
               }
 
-            window.addEventListener('resize', handleResize);
-            return () => window.removeEventListener("resize", handleResize)
-        }, );
+        }, []);
 
-        return windowSize;
-    } else {
-            return [0,0]
-    }
+   
 
-};
-
-const [width, height] = useWindowResize();   
-console.trace()
 
 
     return (
         <main style={{backgroundColor: secretMode  ? "#A6A6A6": undefined}}  className="relative bg-main-blue min-h-screen w-screen overflow-hidden">
            <div style={{zIndex: 99}} className="z-90 absolute"> <Header back={true}/></div>
             <h2 style={{zIndex: 99}} className="top-16 lg:top-64 w-5/6 lg:w-1/2 left-1/2 translate-x-[-50%] lg:text-center absolute font-semibold text-4xl md:text-7xl text-[#fff] mt-12 mb-4 leading-relaxed pl-4 z-20">This is a safe place.You are not alone and we are here to help you.</h2>
-            <a style={{zIndex: 99}} href="/blue/chat" className=" z-20 bg-[#000] grid place-items-center cursor-pointer h-16 w-44 rounded-lg absolute bottom-4 right-4">
+            <Link style={{zIndex: 99}} href="/blue/chat" className=" z-20 bg-[#000] grid place-items-center cursor-pointer h-16 w-44 rounded-lg absolute bottom-4 right-4">
                 <span className="text-[#fff] bottom-0">Continue</span>
-            </a>
+            </Link>
             <Image style={{zIndex: -0}} className="z-0 w-[220%] lg:w-screen lg:translate-y-[-20vh]  max-w-[250%]  top-0 absolute" src={blue} alt="llustration" />
         </main>
     )

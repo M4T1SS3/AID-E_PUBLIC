@@ -1,4 +1,5 @@
 import { motion } from "framer-motion"
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import Header from "../components/header";
 import Loading from "../components/loading";
@@ -90,9 +91,9 @@ export default function ActionPage() {
                 drag={width< breakingPoint ? "x": undefined}
                 style={{width:  width< breakingPoint ? 100 * actionPoints.length + "vw": 100 + "vw"}}
                 dragConstraints={{left: -( width * (actionPoints.length-1)) + 4*2*paddingToBorder, right: 0}}>
-                {actionPoints.map((item, index) => {
+                {actionPoints.map(({index, item }: any) => {
                     return (
-                        <ActionCard id={index} item={item}/>
+                        <ActionCard key={index} item={item}/>
                     )
                 })}
             </motion.ul>}
@@ -100,9 +101,9 @@ export default function ActionPage() {
                     <div className="bg-[#000] w-1/2 rounded-lg grid place-items-center cursor-pointer text-center text-[#fff]" onClick={() => deleteChat()}>
                         Delete data
                     </div>
-                    <a href="/blue/infoPage" className="bg-[#000] w-1/2 rounded-lg grid place-items-center cursor-pointer text-center text-[#fff]" style={{opacity: email.length == 0 ? 50 + "%": 100 + "%"}}>
+                    <Link href="/blue/infoPage" className="bg-[#000] w-1/2 rounded-lg grid place-items-center cursor-pointer text-center text-[#fff]" style={{opacity: email.length == 0 ? 50 + "%": 100 + "%"}}>
                         Send email
-                    </a>
+                    </Link>
                 </div>}
         </section>
     )
@@ -113,10 +114,10 @@ type ActionCardProps = {
     id: number,  heading: string, description: string
 }
 
-function ActionCard({id,  item}: any) {
+function ActionCard({key,  item}: any) {
    return (
-    <div className="bg-[#40D0FF] rounded-xl p-4 mr-4 cursor-grab" style={{width: width < breakingPoint ? width - 3*paddingToBorder  + "px": undefined}} >
-       <div className="text-7xl opacity-40 font-bold mt-16">{id +1}</div>
+    <div key={key} className="bg-[#40D0FF] rounded-xl p-4 mr-4 cursor-grab" style={{width: width < breakingPoint ? width - 3*paddingToBorder  + "px": undefined}} >
+       <div className="text-7xl opacity-40 font-bold mt-16">{key +1}</div>
        <h3 className="text-3xl font-bold mb-8">{item[0]}</h3>
        <p className="">{item[1]}</p>
    </div>

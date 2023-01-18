@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react'
 import ArrowIcon from "../styles/assets/long-arrow.svg"
 import BlueIllustration from "../styles/assets/blue-illustration.png"
 import RedIllustration from "../styles/assets/red-illustration.png"
+import Link from 'next/link'
 
 
 export default function Home() {
@@ -73,18 +74,18 @@ export default function Home() {
     <main style={{backgroundColor: secretMode  ? "#4b4b4b": undefined}} className='w-screen h-screen font-Poppins bg-[#060606]'>
      <Header back={false}/>
       <div className='md:flex-row flex-col flex h-4/6 w-full md:px-16'>
-        <a style={{backgroundColor: secretMode  ? "#A6A6A6": undefined}} href='/blue'
+        <Link style={{backgroundColor: secretMode  ? "#A6A6A6": undefined}} href='/blue'
           className={`overflow-hidden relative w-full md:h-full text-center h-1/2 cursor-pointer rounded-3xl grid place-items-center bg-main-blue`}
         >
           <motion.h2 style={{fontSize: secretMode  ? 14 + "px": undefined}} className='font-bold text-[#fff] text-3xl absolute z-10'>Am I a victim?</motion.h2>
          {secretMode == false && <Image className='w-full absolute z-0' src={BlueIllustration} alt="a person is getting comforted by another person. 2d illustration. colors. abstract style. playful sad vibe."></Image>}
-        </a>
-        <a style={{backgroundColor: secretMode  ? "#A4A4A6": undefined}} href='/blue'
+        </Link>
+        <Link style={{backgroundColor: secretMode  ? "#A4A4A6": undefined}} href='/blue'
           className={`overflow-hidden relative w-full md:h-full text-center h-1/2 cursor-pointer rounded-3xl grid place-items-center bg-main-blue`}
         >
           <motion.h2 style={{fontSize: secretMode  ? 14 + "px": undefined}}  className='font-bold text-[#fff] text-3xl absolute z-20'>I am a victim.<br></br> Whats next?</motion.h2>
           {secretMode == false &&<Image className='w-full absolute z-10 opacity-90' src={RedIllustration} alt="a person is getting comforted by another person. 2d illustration. colors. abstract style. playful sad vibe."></Image>}
-        </a>
+        </Link>
       </div>
       <div className='absolute bottom-4 px-2 w-full'>
         <div className='rounded-full bg-[#fff] h-16 p-2 flex items-center '>

@@ -2,6 +2,7 @@ import Header from "../components/header";
 import { motion, useAnimation } from "framer-motion";
 import { useEffect, useState } from "react";
 import Loading from "../components/loading";
+import Link from "next/link";
 
 export default function InfoPage() {
     const paddingToBorder = 16;
@@ -80,17 +81,17 @@ export default function InfoPage() {
           drag={width < breakingPoint ? "x": undefined}
           style={{width:  width < breakingPoint ? 100 * infoPoints.length + "vw": 100 + "vw"}}
           dragConstraints={{left: -( width * (infoPoints.length-1)) + 4*2*paddingToBorder, right: 0}}>
-            {infoPoints.length > 0 && infoPoints.map((item, id) => {
+            {infoPoints.length > 0 && infoPoints.map(({key, item}: any) => {
                 return (
-                    <InfoCard  id={id} item={item}/>
+                    <InfoCard  key={key} item={item}/>
                 )
             })}
 
         </motion.ul>
         {loaded &&<div className="grid w-full place-items-end mt-16 mb-4 px-4">
-            <a href="/blue/actionPlan"  className="bg-[#000] grid place-items-center h-16 w-full rounded-lg">
+            <Link href="/blue/actionPlan"  className="bg-[#000] grid place-items-center h-16 w-full rounded-lg">
                 <span className="text-[#fff]">Continue</span>
-            </a>
+            </Link>
         </div>}
     </section>
     )
@@ -101,18 +102,17 @@ export default function InfoPage() {
 
   
 
-    function InfoCard({id, item}: any) {
+    function InfoCard({key, item}: any) {
 
         return (
-            <motion.div key={id}  
+            <motion.div key={key}  
             animate={{ x: 0, opacity: 1 }} initial={{opacity: 0}}
-              transition={[{ delay:1+ id * 5 }, { duration: 0.5 }, {type: "ease"}]}
                className="bg-[#40D0FF] rounded-xl p-4 mr-4 overflow-hidden" 
                style={{width: width < breakingPoint ? width - 4*paddingToBorder  + "px": undefined}} >
-                    <div className="text-7xl opacity-40 font-bold mt-16">{id+1}</div>
+                    <div className="text-7xl opacity-40 font-bold mt-16">{key+1}</div>
                     <h3 className="text-5xl font-bold mb-8">{item[0]}</h3>
                     <p className="w-4/5 mb-16 w-5/6 max-w-[100%] break-words">{item[1]}</p>
-                    <a href={item[2]} className="font-bold  underline cursor-pointer grid-row-end-span-1">{item[2]}</a>
+                    <Link href={item[2]} className="font-bold  underline cursor-pointer grid-row-end-span-1">{item[2]}</Link>
             </motion.div>
         )
        
