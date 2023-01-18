@@ -78,17 +78,18 @@ function Chat() {
             setSecretMode(false)
           }
         
-        let messages = localStorage.getItem("messages");
-        if (messages != null) {
-            setMessages(messages = JSON.parse(messages))
-        }
+          let messages = localStorage.getItem("messages");
+          if (messages !== null && messages !== "") {
+            setMessages(JSON.parse(messages));
+          }
+          
+          
     }, [])
 
     function deleteChat() {
         localStorage.setItem("messages", "");
         setMessages(messages = []);
     }
-
 
 
     return (
