@@ -88,8 +88,9 @@ export default function ActionPage() {
             return;
         }
         console.log(JSON.stringify(data))
+    
         try {
-            const response = await fetch(process.env.domain + '/api/email', {
+            const response = await fetch("https://aid-e.netlify.app/api/openai", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -49,8 +49,8 @@ export default function InfoPage() {
    async function getInfoCards() {
     try {
         let history = localStorage.getItem("messages")
-        // https://aid-e.netlify.app
-        const response = await fetch(process.env.domain + '/api/openai', {
+     
+        const response = await fetch("https://aid-e.netlify.app/api/openai", {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

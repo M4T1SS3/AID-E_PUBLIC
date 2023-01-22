@@ -5,9 +5,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     // create reusable transporter object using the default SMTP transport
     let message = ""
     console.log(req.body.email)
-
+ 
       try {
-        const response = await fetch(process.env.domain + '/api/openai', {
+        const response = await fetch("https://aid-e.netlify.app/api/openai", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
