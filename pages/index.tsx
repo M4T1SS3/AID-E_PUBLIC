@@ -97,7 +97,7 @@ export default function Home() {
               <Image src={ArrowIcon} alt="arrow icon" className='pointer-events-none'></Image>
           </motion.div>
           <div className='h-12 rounded-full bg-[#97bfff] ' style={{width: dragPosition }} />
-          <span className='mx-auto text-[#000] text-center absolute left-1/2 translate-x-[-50%]'>activate discreet colors</span>
+          <span className='mx-auto text-[#000] text-center absolute left-1/2 translate-x-[-50%]'>{ secretMode ? "activate calm colors" :"activate discreet colors"}</span>
         </div>
       </div>
     </main>

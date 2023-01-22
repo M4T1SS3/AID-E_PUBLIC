@@ -10,7 +10,7 @@ import Link from "next/link";
 
 
 function Chat() {
-
+    //scroll to bottom
 
     let [input, setInput] = useState("")
     let [messages, setMessages] = useState<MessageProps[]>([]);
@@ -21,6 +21,10 @@ function Chat() {
     }
 
     function addMessage () {
+        if (input === "") {
+            return;
+        }
+
         let newMessage = {message: input, input: true}
         setMessages(messages = [...messages, newMessage])
         console.log(messages)
@@ -28,6 +32,7 @@ function Chat() {
         localStorage.setItem("messages", JSON.stringify(messages));
         handleSubmit()
         setInput(input = "")
+        window.scrollTo(0, 0);
     };
 
 
@@ -53,7 +58,7 @@ function Chat() {
             let newMessage = {message: data, input: false}
             setMessages(messages = [...messages, newMessage])
             localStorage.setItem("messages", JSON.stringify(messages));
-        
+            window.scrollTo(0, 0);
         
       }
     
@@ -62,6 +67,7 @@ function Chat() {
     function handleKeyDown (event: any) {
         if (event.key === 'Enter') {
             addMessage()
+            window.scrollTo(0, 0);
         }
     }
     const [greeting, setGreeting] = useState("")

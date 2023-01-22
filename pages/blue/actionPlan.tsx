@@ -10,7 +10,8 @@ export default function ActionPage() {
     async function getInfoCards() {
         try {
             let history = localStorage.getItem("messages")
-            const response = await fetch('https://aid-e.netlify.app/api/openai', {
+            // https://aid-e.netlify.app
+            const response = await fetch('/api/openai', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
@@ -25,8 +26,8 @@ export default function ActionPage() {
                 cleanStringList = stringList.filter((item: string) => item.length > 8);
                 stringList = cleanStringList
                 let items = stringList.map((item: string) => item.split(/Description:/))
-                // let cleanItems = items.filter((item: string) => item.length > 1);
-                // items = cleanItems
+                let cleanItems = items.filter(item => item.length > 1);
+                items = cleanItems
                 setActionPoints( actionPoints =  items)
                 console.log(actionPoints)
                 setLoaded(true)
@@ -80,13 +81,36 @@ export default function ActionPage() {
         localStorage.setItem("messages", "");
     }
 
+    const sendEmail = async () => {
+        let history = localStorage.getItem("messages")
+        const data = { email, history};
+        if (email === "") {
+            return;
+        }
+        console.log(JSON.stringify(data))
+        try {
+            const response = await fetch('/api/email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+    
+            const json = await response.json();
+            console.log(json);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
     return (
         <section className="overflow-hidden grid bg-main-blue min-h-screen" style={{backgroundColor: secretMode  ? "#A6A6A6": undefined}}>
              <Header back={true}/>
              {loaded === false &&<Loading/>}
              {loaded &&<div className="w-screen px-4 ">
                 <h2 className="text-4xl font-bold mb-8 mt-8">This is what you can do</h2>
-                <input style={{backgroundColor: secretMode  ? "#A6A6A6": undefined}} className="w-full placeholder-[#0000007e] bg-main-blue overflow-hidden border-b-2 mb-8 border-[#000000]" type="text" placeholder="Send plan to email"></input>
+                <input style={{backgroundColor: secretMode  ? "#A6A6A6": undefined}} onChange={(event) => setEmail(event.target.value)} className="w-full placeholder-[#0000007e] bg-main-blue overflow-hidden border-b-2 mb-8 border-[#000000]" type="text" placeholder="Send plan to email"></input>
              </div>}
              {loaded &&<motion.ul className="flex row-span-4 md:row-span-1 mt-4 ml-4 overflow-hidden md:grid md:grid-cols-3 md:gap-y-4 md:m-0 md:px-4"
                 drag={width< breakingPoint ? "x": undefined}
@@ -102,9 +126,9 @@ export default function ActionPage() {
                     <div className="bg-[#000] w-1/2 rounded-lg grid place-items-center cursor-pointer text-center text-[#fff]" onClick={() => deleteChat()}>
                         Delete data
                     </div>
-                    <Link href="/blue/infoPage" className="bg-[#000] w-1/2 rounded-lg grid place-items-center cursor-pointer text-center text-[#fff]" style={{opacity: email.length === 0 ? 50 + "%": 100 + "%"}}>
+                    <div onClick={()=> sendEmail()} className="bg-[#000] w-1/2 rounded-lg grid place-items-center cursor-pointer text-center text-[#fff]" style={{opacity: email.length === 0 ? 50 + "%": 100 + "%"}}>
                         Send email
-                    </Link>
+                    </div>
                 </div>}
         </section>
     )
