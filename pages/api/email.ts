@@ -7,7 +7,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     console.log(req.body.email)
 
       try {
-        const response = await fetch('http://localhost:3000//api/openai', {
+        const response = await fetch(process.env.domain + '/api/openai', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

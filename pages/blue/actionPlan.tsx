@@ -11,7 +11,7 @@ export default function ActionPage() {
         try {
             let history = localStorage.getItem("messages")
             // https://aid-e.netlify.app
-            const response = await fetch('/api/openai', {
+            const response = await fetch(process.env.domain + '/api/openai', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ export default function ActionPage() {
         }
         console.log(JSON.stringify(data))
         try {
-            const response = await fetch('/api/email', {
+            const response = await fetch(process.env.domain + '/api/email', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

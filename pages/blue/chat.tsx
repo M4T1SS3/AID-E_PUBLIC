@@ -47,7 +47,7 @@ function Chat() {
                 }
             })
 
-            const response = await fetch('/api/openai', {
+            const response = await fetch(process.env.domain + '/api/openai', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
