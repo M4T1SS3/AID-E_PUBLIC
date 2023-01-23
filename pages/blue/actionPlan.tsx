@@ -100,6 +100,7 @@ export default function ActionPage() {
     
             const json = await response.json();
             console.log(json);
+            setEmail("")
         } catch (error) {
             console.error('Error:', error);
         }
