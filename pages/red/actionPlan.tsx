@@ -111,7 +111,7 @@ export default function ActionPage() {
              <Header back={true}/>
              {loaded === false &&<Loading/>}
              {loaded &&<div className="w-screen px-4 ">
-                <h2 className="text-4xl font-bold mb-8 mt-8">This is what you can do</h2>
+                <h2 className="text-4xl font-bold mb-8 mt-8">A path to safety</h2>
                 <input style={{backgroundColor: secretMode  ? "#A6A6A6": undefined}} onChange={(event) => setEmail(event.target.value)} className="w-full placeholder-[#0000007e] bg-main-blue overflow-hidden border-b-2 mb-8 border-[#000000]" type="text" placeholder="Send plan to email"></input>
              </div>}
              {loaded &&<motion.ul className="flex row-span-4 md:row-span-1 mt-4 ml-4 overflow-hidden md:grid md:grid-cols-3 md:gap-y-4 md:m-0 md:px-4"

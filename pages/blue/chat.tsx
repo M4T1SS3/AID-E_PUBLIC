@@ -37,31 +37,37 @@ function Chat() {
 
 
     async function handleSubmit() {
-        
-            let history = ""
-            messages.map((item) => {
-                if (item.input == true) {
-                    history += "[what the victim said]: " + item.message;
-                } else{
-                    history += " [what you said]: " + item.message;
-                }
-            })
+        let history = ""
+        messages.map((item) => {
+            if (item.input == true) {
+                history += "[what the victim said]: " + item.message;
+            } else{
+                history += " [what you said]: " + item.message;
+            }
+        })
 
-
+        try {
             const response = await fetch("https://aid-e.netlify.app/api/openai", {
                 method: 'POST',
                 headers: {
-                  'Content-Type': 'application/json',
+                    'Content-Type': 'application/json',
                 },
                 body:JSON.stringify(history),
-              })
+            });
+            if (!response.ok) {
+                throw new Error(response.statusText);
+            }
             const data = await response.json();
-            let newMessage = {message: data, input: false}
-            setMessages(messages = [...messages, newMessage])
+            let newMessage = {message: data, input: false};
+            setMessages(messages = [...messages, newMessage]);
             localStorage.setItem("messages", JSON.stringify(messages));
             window.scrollTo(0, 0);
-        
-      }
+        } catch (error) {
+            console.error('Error:', error);
+            // Handle the error here, for example by displaying an error message to the user.
+        }
+    }
+
     
 
 
