@@ -11,7 +11,7 @@ module.exports = {
   theme: {
     colors: {
       "main-blue": "#6858FD",
-      "main-pink": "#FD3C3F"
+      "main-red": "#FD3C3F"
     },
     extend: {
       fontFamily: {

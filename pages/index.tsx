@@ -78,7 +78,7 @@ export default function Home() {
           <motion.h2 style={{fontSize: secretMode  ? 14 + "px": undefined}} className='font-bold text-[#fff] text-3xl absolute z-10'>Am I a victim?</motion.h2>
          {secretMode == false && <Image className='w-full absolute z-0' src={BlueIllustration} alt="a person is getting comforted by another person. 2d illustration. colors. abstract style. playful sad vibe."></Image>}
         </Link>
-        <Link style={{backgroundColor: secretMode  ? "#A4A4A6": undefined}} href='/blue'
+        <Link style={{backgroundColor: secretMode  ? "#A4A4A6": undefined}} href='/red'
           className={`overflow-hidden relative w-full md:h-full text-center h-1/2 cursor-pointer rounded-3xl grid place-items-center bg-main-blue`}
         >
           <motion.h2 style={{fontSize: secretMode  ? 14 + "px": undefined}}  className='font-bold text-[#fff] text-3xl absolute z-20'>I am a victim.<br></br> Whats next?</motion.h2>

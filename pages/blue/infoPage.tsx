@@ -74,7 +74,7 @@ export default function InfoPage() {
    
 
     return (
-        <section className="overflow-hidden bg-main-blue min-h-screen  lg:h-auto flex-row ju" style={{backgroundColor: secretMode  ? "#A6A6A6": undefined}} >
+        <section className="overflow-hidden bg-main-blue min-h-screen  lg:h-auto flex-row" style={{backgroundColor: secretMode  ? "#A6A6A6": undefined}} >
           <Header back={true}/>
           {loaded && <h2 className="text-4xl mt-8 font-bold mb-8 ml-4">It seems you were a victim of</h2>}
           {loaded == false &&<Loading/>}
@@ -92,7 +92,7 @@ export default function InfoPage() {
               })}
 
         </motion.ul>}
-        {loaded &&<div className="grid w-full place-items-end mt-16 mb-4 px-4 absolute bottom-4">
+        {loaded &&<div className="grid w-full place-items-end mt-16 mb-4 px-4 absolute lg:relative bottom-4">
             <Link href="/blue/actionPlan"  className="bg-[#000] grid place-items-center h-16 w-full rounded-lg">
                 <span className="text-[#fff]">Continue</span>
             </Link>
