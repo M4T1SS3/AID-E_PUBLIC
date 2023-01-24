@@ -46,6 +46,7 @@ function Chat() {
             }
         })
 
+        
         try {
             const response = await fetch("https://aid-e.netlify.app/api/openai", {
                 method: 'POST',
